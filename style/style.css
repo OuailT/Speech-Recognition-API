@@ -5,7 +5,7 @@
   }
   
   body {
-    background: #2f3542 url('img/bg.jpg') no-repeat left center/cover;
+    /* background: #2f3542 url('/img/bg.jpg') no-repeat left center/cover; */
     color: #fff;
     min-height: 100vh;
     display: flex;
@@ -15,6 +15,7 @@
     text-align: center;
     margin: 0;
     font-family: 'Poppins', sans-serif;
+    background: #111;
   }
 
   h1,
