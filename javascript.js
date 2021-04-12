@@ -1,7 +1,8 @@
 const MessageEl = document.getElementById("msg");
 
-const randomNum = getRandomNum();
 
+
+//SpeechRecognition
 window.SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -14,35 +15,32 @@ recognition.start();
 // Capture what the user speaks
 function onSpeak(e) {
     const msg = e.results[0][0].transcript;
-    
-    // CheckCode(msg);
     TalkTheTalk(msg);
+    CheckCode(msg) ;
+    
 }
 
 
-//Check message Against text
+//Check The code To start the conversations
 function CheckCode(msg) {
     const num = msg;
     
     //Check if The code is Valid 
-    if(num == 333 ) {
+    if(num == 1) {
         MessageEl.innerHTML = `<div>${msg} Code is Right, How are you Today Ouail!</div>`;
-        return;
+        return true;
+   
     }
-
-     else {
-        MessageEl.innerHTML = `<div>${msg} Code is Wrong, Please Speak The Right Code To talk to me</div>`;
-        return;
-     }
-
+        return false;
 }
+
 
 
 // Talking with the APIS functions
 function TalkTheTalk(msg) {
-
-    const talk = msg; 
-
+    
+    if(CheckCode(1)) {
+    const talk = msg;
     const greetings = ["I'm good", "I'm fine", "I'm Ok"];
 
      const result = greetings.find((greeting)=> {
@@ -52,18 +50,22 @@ function TalkTheTalk(msg) {
         if(result) {
             MessageEl.innerHTML = '<div> Im so happy to hear that! What can i do for you today ! </div>';
         }
+
         else {
             MessageEl.innerHTML = '<div>Sorry Ouail I didnt hear !Would you Repeat</div>';
             
         }    
     
+    } 
 }
 
 
-
-
 //Event Listener 
+
 //Speak result
 recognition.addEventListener('result', onSpeak);
+
+//End of the Service
+recognition.addEventListener('end', () => recognition.start());
 
 
