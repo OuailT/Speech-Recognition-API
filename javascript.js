@@ -1,4 +1,6 @@
 const MessageEl = document.getElementById("msg");
+const codeText = document.getElementById("code");
+
 
 
 
@@ -16,22 +18,24 @@ recognition.start();
 function onSpeak(e) {
     const msg = e.results[0][0].transcript;
     TalkTheTalk(msg);
-    CheckCode(msg) ;
+    CheckCode(msg);
     
+   
 }
 
 
 //Check The code To start the conversations
 function CheckCode(msg) {
     const num = msg;
-    
-    //Check if The code is Valid 
+
+    //Check if The code is Valid
     if(num == 1) {
         MessageEl.innerHTML = `<div>${msg} Code is Right, How are you Today Ouail!</div>`;
         return true;
-   
-    }
-        return false;
+    } 
+
+    return false;
+      
 }
 
 
@@ -48,7 +52,9 @@ function TalkTheTalk(msg) {
         });
 
         if(result) {
-            MessageEl.innerHTML = '<div> Im so happy to hear that! What can i do for you today ! </div>';
+            MessageEl.innerHTML = '<div> Im so happy to hear that! Lets play together! </div>';
+            codeText.remove();
+            
         }
 
         else {
@@ -57,6 +63,7 @@ function TalkTheTalk(msg) {
         }    
     
     } 
+    
 }
 
 
